@@ -8,7 +8,36 @@ function generateTaskId() {
 }
 
 // Todo: create a function to create a task card
+function createTaskCard(task) {
+    const taskCard = $('<div>')
+        .addclass('card task-card draggable my-3')
+        .attr('data-task-id', task - id);
+    const cardHeader = $('<div>').addclass('card-header h4').text(task.title);
+    const cardBody = $('<div>').addclass('card-body');
+    const cardDescription = $('<p>').addclass('card-text').text(task.description);
+    const cardDueDate = $('<p>').addclass('card-text').text(task.dueDate);
+    const cardDeletebtn = $('<button>')
+        .addclass('btn btn-danger delete')
+        .text('Delete')
+        .attr('click', handleDeleteTask);
 
+    if (project.dueDate && project.status !== 'done') {
+        const now = dayjs();
+        const taskDueDate = dayjs(project.dueDate, 'DD/MM/YYYY');
+
+        if (now.isSame(taskDueDate, 'day')) {
+            taskCard.addClass('bg-warning text-white');
+        } else if (now.isAfter(taskDueDate)) {
+            taskCard.addClass('bg-danger text-white');
+            cardDeleteBtn.addClass('border-light');
+        }
+    }
+
+    cardBody.append(cardDescription, cardDueDate, cardDeletebtn)
+    taskCard.append(cardHeader, cardBody);
+
+    return taskCard;
+}
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
