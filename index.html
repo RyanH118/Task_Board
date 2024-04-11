@@ -26,30 +26,36 @@
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
     <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="formModalLabel">Add Task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3 w-50">
-            <label for="Task-title" class="col-form-label">Task Title</label>
-            <input type="text" class="form-control" id="task-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="formModalLabel">Add Task</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="mb-3">
-            <label for="task-desc" class="col-form-label">Task Description</label>
-            <textarea class="form-control" id="task-desc"></textarea>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="mb-3 w-50">
+                  <label for="Task-title" class="col-form-label">Task Title</label>
+                  <input type="text" class="form-control" id="task-title">
+                </div>
+                <div class="mb-3 w-50">
+                  <label for="Task-date" class="col-form-label">Task Due Date</label>
+                  <input type="text" class="form-control" id="task-date">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="task-desc" class="col-form-label">Task Description</label>
+                <textarea class="form-control" id="task-desc"></textarea>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Add Task</button>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Add Task</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
         <div id="to-do" class="card border-light mb-3 lane flex-grow-1">
@@ -70,16 +76,16 @@
             <div id="in-progress-cards"></div>
           </div>
         </div>
+      </div>
+      <div class="col-12 col-lg-4 d-flex">
+        <div id="done" class="card border-light mb-3 lane flex-grow-1">
+          <div class="card-header bg-white">
+            <h2 class="card-title mb-1">Done</h2>
+          </div>
+          <div class="card-body bg-light">
+            <div id="done-cards"></div>
+          </div>
         </div>
-        <div class="col-12 col-lg-4 d-flex">
-          <div id="done" class="card border-light mb-3 lane flex-grow-1">
-            <div class="card-header bg-white">
-              <h2 class="card-title mb-1">Done</h2>
-            </div>
-            <div class="card-body bg-light">
-              <div id="done-cards"></div>
-          </div>
-          </div>
       </div>
     </div>
   </div>
