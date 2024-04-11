@@ -14,3 +14,8 @@ body {
 .task-card:hover {
   cursor: grab;
 }
+
+.bg-color {
+  background-color: #198754;
+  border-color: #198754;
+}
