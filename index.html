@@ -32,27 +32,27 @@
             <h5 class="modal-title" id="formModalLabel">Add Task</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <form>
+          <form id="formTask">
+            <div class="modal-body">
               <div class="row">
                 <div class="mb-3 w-50">
                   <label for="Task-title" class="col-form-label">Task Title</label>
-                  <input type="text" class="form-control" id="task-title">
+                  <input type="text" class="form-control" id="task-title" required>
                 </div>
                 <div class="mb-3 w-50">
                   <label for="Task-date" class="col-form-label">Task Due Date</label>
-                  <input type="text" class="form-control" id="task-date">
+                  <input type="text" class="form-control" id="task-date" required>
                 </div>
               </div>
               <div class="mb-3">
                 <label for="task-desc" class="col-form-label">Task Description</label>
-                <textarea class="form-control" id="task-desc"></textarea>
+                <textarea class="form-control" id="task-desc" required></textarea>
               </div>
-            </form>
-          </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="submit" class="btn btn-success">Add Task</button>
-          </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="submit" class="btn btn-success">Add Task</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

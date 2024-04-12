@@ -1,46 +1,51 @@
+const taskFormEl = $('#formTask');
+const taskTitleEl = $('#task-title');
+const taskDescEl = $('#task-desc');
+const taskDateEl = $('#task-date');
+
 // Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks"));
-let nextId = JSON.parse(localStorage.getItem("nextId"));
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let nextId = JSON.parse(localStorage.getItem("nextId")) || 1;
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-    return nextId++;
+    const newId = nextId;
+    nextId++;
+    localStorage.setItem('nextId', JSON.stringify(nextId));
+    return newId;
 }
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-    const taskCard = $('<div>')
-        .addclass('card task-card draggable my-3')
-        .attr('data-task-id', task - id);
-    const cardHeader = $('<div>').addclass('card-header h4').text(task.title);
-    const cardBody = $('<div>').addclass('card-body');
-    const cardDescription = $('<p>').addclass('card-text').text(task.description);
-    const cardDueDate = $('<p>').addclass('card-text').text(task.dueDate);
-    const cardDeletebtn = $('<button>')
-        .addclass('btn btn-danger delete')
-        .text('Delete')
-        .attr('click', handleDeleteTask);
+    const taskCard = $(`
+        <div class="card task-card draggable my-3" data-task-id="${task.id}">
+            <div class="card-header h4">${task.title}</div>
+            <div class="card-body">
+                <p class="card-text">${task.description}</p>
+                <p class="card-text">${task.dueDate}</p>
+                <button class="btn btn-danger border-light delete" data-task-id="${task.id}">Delete</button>
+            </div>
+        </div>
+    `);
 
-    if (project.dueDate && project.status !== 'done') {
+    taskCard.find('.delete').on('click', handleDeleteTask);
+
+    if (task.dueDate && task.status !== 'done') {
         const now = dayjs();
-        const taskDueDate = dayjs(project.dueDate, 'DD/MM/YYYY');
+        const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
 
         if (now.isSame(taskDueDate, 'day')) {
             taskCard.addClass('bg-warning text-white');
         } else if (now.isAfter(taskDueDate)) {
             taskCard.addClass('bg-danger text-white');
-            cardDeleteBtn.addClass('border-light');
         }
     }
-
-    cardBody.append(cardDescription, cardDueDate, cardDeletebtn)
-    taskCard.append(cardHeader, cardBody);
 
     return taskCard;
 }
 
 // Todo: create a function to render the task list and make cards draggable
-function renderTaskList() {
+function renderTaskList(event) {
 
 }
 
@@ -61,10 +66,9 @@ function handleDrop(event, ui) {
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
-    
     $("#task-date").datepicker({
         changeMonth: true,
-        changeYear: true
-    });
+        changeYear: true,
 
+    });
 });
